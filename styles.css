@@ -1,0 +1,52 @@
+body {
+    font-family: 'Times New Roman', Times, serif;
+    
+}
+
+#app {
+    text-align: center;
+    margin-top: 50px;
+}
+
+button {
+    background-color: #ecebeb;
+    color:  #000000;    
+    border: none;    
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+    
+}
+
+button:hover {
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+  }
+
+#output {
+    margin-top: 20px;
+    font-size: 18px;
+}
+
+.axis-label {
+    fill: black;
+    font-size: 12;
+}
+
+h1 {
+    padding: 10px 20px;
+    font-size: 35px;
+}
+
+.legend {
+    font-size: 12px;
+    font-family: Arial, sans-serif;
+  }
