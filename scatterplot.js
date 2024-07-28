@@ -44,8 +44,7 @@ function  displayChartForYear(data, year, annotationsData) {
        .attr('y', -10)
        .attr('text-anchor', 'middle')
        .text('Net Charge Off Ratio');
-       
-                
+            
     svg.append('g')
         .attr('transform', `translate(0,${height})`)
         .call(d3.axisBottom(xs).tickFormat(d3.format("d")))
@@ -54,9 +53,7 @@ function  displayChartForYear(data, year, annotationsData) {
         .attr('x', width / 2)
         .attr('y', margin - 10)
         .attr('text-anchor', 'middle')
-        .text('Year');
-
-        
+        .text('Year');      
         
     const grouped_x = svg.selectAll('.year-group').data(filtered_data).enter()
        .append('g').attr('class','year-group').attr('transform', d => `translate(${xs(d.Year)},0)`);
@@ -70,9 +67,7 @@ function  displayChartForYear(data, year, annotationsData) {
        .attr('y', d=>ys(d.value))
        .attr('width', xg.bandwidth())
        .attr('height', d => height - ys(d.value))
-       .attr('fill', d=> color(d.key));
-        
-
+       .attr('fill', d=> color(d.key));     
     
     if (annotationsData) {        
 
@@ -133,8 +128,7 @@ async function updateChartForYear(end_year) {
         .style("background-color", "white")
         .style("border", "1px solid black")
         .style("padding", "5px")
-        ;      
-    
+        ;          
     
     svg.append('g')
         .call(d3.axisLeft(ys).tickFormat(d3.format(".2f")))
@@ -250,8 +244,7 @@ async function init() {
     const currentYearDisplay = document.getElementById('currentYear');
     let index = 0;
 
-    sliderContainer.style.visibility = 'hidden';
-    
+    sliderContainer.style.visibility = 'hidden';    
 
     button.addEventListener('click', () => {
         
@@ -267,9 +260,6 @@ async function init() {
                 currentYearDisplay.textContent = year;
                 updateChartForYear(year);
             });
-
-
-
         }
         index++;
     });

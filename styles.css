@@ -81,8 +81,7 @@ p {
     fill: #007bff; 
 }
 
-.annotation-group .annotation-note-label {
-    /* Style for the label text within the annotation */
-    font-size: 14px; /* Font size */    
+.annotation-group .annotation-note-label {    
+    font-size: 14px; 
     fill: #000000; 
 }
