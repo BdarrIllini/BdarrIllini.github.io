@@ -8,6 +8,7 @@ async function loaddata() {
             Popular_StockPrice: +d.Popular_StockPrice
         };
     });
+    
     return data;
 }
 
@@ -60,6 +61,7 @@ function  displayChartForYear(data, year, annotationsData) {
     const grouped_x = svg.selectAll('.year-group').data(filtered_data).enter()
        .append('g').attr('class','year-group').attr('transform', d => `translate(${xs(d.Year)},0)`);
 
+    
     grouped_x.selectAll('rect')
        .data(d => banks.map(key => ({ key: key,value: d[key]})))
        .enter().append('rect')
@@ -124,6 +126,16 @@ async function updateChartForYear(end_year) {
     var color = d3.scaleOrdinal().domain(banks).range(['orange', 'blue']);
     var filtered_data = data.filter(d => d.Year >= 2005 && d.Year <= end_year);
 
+    var tooltip = d3.select("body").append("div")
+        .attr("class", "tooltip")
+        .style("position", "absolute")
+        .style("visibility", "hidden")
+        .style("background-color", "white")
+        .style("border", "1px solid black")
+        .style("padding", "5px")
+        ;      
+    
+    
     svg.append('g')
         .call(d3.axisLeft(ys).tickFormat(d3.format(".2f")))
         .append('text')
@@ -154,8 +166,13 @@ async function updateChartForYear(end_year) {
         .attr('y', d => ys(d.value))
         .attr('width', xg.bandwidth())
         .attr('height', d => height - ys(d.value))
-        .attr('fill', d => color(d.key));
-
+        .attr('fill', d => color(d.key))
+        .on('mouseover',(d) => tooltip.style('visibility','visible')
+                                        .html(`<div class="tooltip-title">${legendNames[d.key]}</div>
+                                               <div class="tooltip-value">NCO Ratio: ${d.value}</div>`)                                        
+                                        .style("top", (d3.event.pageY - 10) + "px")
+                                        .style("left", (d3.event.pageX + 10) + "px"))
+        .on('mouseout', function() {tooltip.style('visibility','hidden');});
     
     const legend = svg.selectAll('.legend')
         .data(banks)
@@ -234,15 +251,14 @@ async function init() {
     let index = 0;
 
     sliderContainer.style.visibility = 'hidden';
-
-    displayChartForYear(data, years[index],annotationsData[index]);
+    
 
     button.addEventListener('click', () => {
-        index++;
+        
         if (index < years.length - 1) {
             displayChartForYear(data, years[index],annotationsData[index]);
         } else if (index === years.length - 1) {
-            displayChartForYear(data, years[index],annotationsData[index]);
+            updateChartForYear(2023);
             button.style.visibility = 'hidden';
             sliderContainer.style.visibility = 'visible';
             sliderContainer.style.display = 'block';
@@ -251,7 +267,11 @@ async function init() {
                 currentYearDisplay.textContent = year;
                 updateChartForYear(year);
             });
+
+
+
         }
+        index++;
     });
 }
 

@@ -6,6 +6,7 @@ body {
 #app {
     text-align: center;
     margin-top: 10px;
+    height: 15;
 }
 
 button {
@@ -59,15 +60,29 @@ p {
     font-family: Arial, sans-serif;
   }
 
-  .tooltip {
-    position: absolute;
-    text-align: center;
-    width: 120px;
+.tooltip {
+    width: auto;
     height: auto;
     padding: 5px;
-    font: 12px sans-serif;
-    background: lightsteelblue;
+    font: 12px sans-serif;    
     border: 0px;
     border-radius: 8px;
     pointer-events: none;
+}
+
+.tooltip .tooltip-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+
+.annotation-group .annotation-note-title {    
+    font-size: 16px; 
+    fill: #007bff; 
+}
+
+.annotation-group .annotation-note-label {
+    /* Style for the label text within the annotation */
+    font-size: 14px; /* Font size */    
+    fill: #000000; 
 }
