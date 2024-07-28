@@ -5,10 +5,15 @@
 
 <link rel="stylesheet" href="styles.css">
 <script src='https://d3js.org/d3.v5.min.js'></script>
+<script src="https://rawgit.com/susielu/d3-annotation/master/d3-annotation.min.js"></script>
 
 <body onload='init()'>
 ,<div id="header"> 
     <h1 style= "text-align:center"> Comparison of Net Charge-Offs from Puerto Rican Banks </h1>
+    <p style="text-align: center;"> OFG Bank and Banco Popular have had unique paths with the percentage of their loans that
+         they have had to write off as uncollectable since 2005. The percentage of loans that are written off is tracked by what is called
+         a Net Charge Off ratio and below we will track how the ratio trended for these two banks in Puerto Rico since 2005.
+          </p>
 </div>
 
 <div style="text-align: center;" id="app">
@@ -17,6 +22,7 @@
 </div>
 
 <div style="text-align: center;" id="yearSliderContainer">
+    <label for = "yearSlider" >Slide to Adjust Year</label>
     <input type="range" id="yearSlider" min="2005" max="2023" step="1" value="2005">
     <span id="currentYear">2007</span>
   </div>
@@ -24,6 +30,7 @@
 <div style="text-align: center;" id="chart">
     <svg width=600 height=600></svg>
 </div>
+
 
 <script src="scatterplot.js"></script>
 
