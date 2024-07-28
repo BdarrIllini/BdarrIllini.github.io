@@ -140,10 +140,10 @@ async function updateChartForYear(end_year) {
         .call(d3.axisLeft(ys).tickFormat(d3.format(".2f")))
         .append('text')
         .attr('class', 'axis-label')
-        .attr('x', margin)
+        .attr('x', margin+margin)
         .attr('y', -10)
         .attr('text-anchor', 'middle')
-        .text('Net Charge Off Ratio');
+        .text('Net Charge Off Ratio (hover over bars for details)');
 
     svg.append('g')
         .attr('transform', `translate(0,${height})`)
